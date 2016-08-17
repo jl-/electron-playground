@@ -6,6 +6,8 @@ import {
     DEFAULT_WIN_CONF
 } from '../configs/app';
 
+console.log(require.resolve('electron'));
+
 const { app, BrowserWindow } = electron;
 const wins = {};
 const APP_WIN_NAME = 'app';

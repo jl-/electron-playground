@@ -46,7 +46,7 @@
 
 	'use strict';
 
-	var _electron = __webpack_require__(8);
+	var _electron = __webpack_require__(4);
 
 	var _electron2 = _interopRequireDefault(_electron);
 
@@ -65,6 +65,8 @@
 	var _app = __webpack_require__(33);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	console.log(/*require.resolve*/(4));
 
 	var app = _electron2.default.app;
 	var BrowserWindow = _electron2.default.BrowserWindow;
@@ -141,6 +143,12 @@
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	module.exports = require("electron");
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
@@ -149,12 +157,12 @@
 	});
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dP         = __webpack_require__(6)
+	var dP         = __webpack_require__(7)
 	  , createDesc = __webpack_require__(13);
-	module.exports = __webpack_require__(4) ? function(object, key, value){
+	module.exports = __webpack_require__(5) ? function(object, key, value){
 	  return dP.f(object, key, createDesc(1, value));
 	} : function(object, key, value){
 	  object[key] = value;
@@ -162,7 +170,7 @@
 	};
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var anObject       = __webpack_require__(9)
@@ -170,7 +178,7 @@
 	  , toPrimitive    = __webpack_require__(29)
 	  , dP             = Object.defineProperty;
 
-	exports.f = __webpack_require__(4) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+	exports.f = __webpack_require__(5) ? Object.defineProperty : function defineProperty(O, P, Attributes){
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
@@ -183,7 +191,7 @@
 	};
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var store      = __webpack_require__(27)('wks')
@@ -197,12 +205,6 @@
 	};
 
 	$exports.store = store;
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	module.exports = require("electron");
 
 /***/ },
 /* 9 */
@@ -395,9 +397,9 @@
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(6).f
+	var def = __webpack_require__(7).f
 	  , has = __webpack_require__(2)
-	  , TAG = __webpack_require__(7)('toStringTag');
+	  , TAG = __webpack_require__(8)('toStringTag');
 
 	module.exports = function(it, tag, stat){
 	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
@@ -460,7 +462,7 @@
 	  , core           = __webpack_require__(19)
 	  , LIBRARY        = __webpack_require__(23)
 	  , wksExt         = __webpack_require__(31)
-	  , defineProperty = __webpack_require__(6).f;
+	  , defineProperty = __webpack_require__(7).f;
 	module.exports = function(name){
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
 	  if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
@@ -470,7 +472,7 @@
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports.f = __webpack_require__(7);
+	exports.f = __webpack_require__(8);
 
 /***/ },
 /* 32 */
@@ -548,7 +550,7 @@
 	var global    = __webpack_require__(1)
 	  , core      = __webpack_require__(19)
 	  , ctx       = __webpack_require__(59)
-	  , hide      = __webpack_require__(5)
+	  , hide      = __webpack_require__(6)
 	  , PROTOTYPE = 'prototype';
 
 	var $export = function(type, name, source){
@@ -611,7 +613,7 @@
 /* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = !__webpack_require__(4) && !__webpack_require__(10)(function(){
+	module.exports = !__webpack_require__(5) && !__webpack_require__(10)(function(){
 	  return Object.defineProperty(__webpack_require__(35)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
@@ -623,13 +625,13 @@
 	var LIBRARY        = __webpack_require__(23)
 	  , $export        = __webpack_require__(36)
 	  , redefine       = __webpack_require__(43)
-	  , hide           = __webpack_require__(5)
+	  , hide           = __webpack_require__(6)
 	  , has            = __webpack_require__(2)
 	  , Iterators      = __webpack_require__(22)
 	  , $iterCreate    = __webpack_require__(64)
 	  , setToStringTag = __webpack_require__(25)
 	  , getPrototypeOf = __webpack_require__(71)
-	  , ITERATOR       = __webpack_require__(7)('iterator')
+	  , ITERATOR       = __webpack_require__(8)('iterator')
 	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
 	  , FF_ITERATOR    = '@@iterator'
 	  , KEYS           = 'keys'
@@ -781,7 +783,7 @@
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(5);
+	module.exports = __webpack_require__(6);
 
 /***/ },
 /* 44 */
@@ -952,7 +954,7 @@
 
 	exports.default = init;
 
-	var _electron = __webpack_require__(8);
+	var _electron = __webpack_require__(4);
 
 	var _electron2 = _interopRequireDefault(_electron);
 
@@ -1011,7 +1013,7 @@
 	});
 	exports.default = init;
 
-	var _electron = __webpack_require__(8);
+	var _electron = __webpack_require__(4);
 
 	var _electron2 = _interopRequireDefault(_electron);
 
@@ -1212,7 +1214,7 @@
 	  , IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(5)(IteratorPrototype, __webpack_require__(7)('iterator'), function(){ return this; });
+	__webpack_require__(6)(IteratorPrototype, __webpack_require__(8)('iterator'), function(){ return this; });
 
 	module.exports = function(Constructor, NAME, next){
 	  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
@@ -1249,7 +1251,7 @@
 	var META     = __webpack_require__(14)('meta')
 	  , isObject = __webpack_require__(11)
 	  , has      = __webpack_require__(2)
-	  , setDesc  = __webpack_require__(6).f
+	  , setDesc  = __webpack_require__(7).f
 	  , id       = 0;
 	var isExtensible = Object.isExtensible || function(){
 	  return true;
@@ -1304,11 +1306,11 @@
 /* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dP       = __webpack_require__(6)
+	var dP       = __webpack_require__(7)
 	  , anObject = __webpack_require__(9)
 	  , getKeys  = __webpack_require__(12);
 
-	module.exports = __webpack_require__(4) ? Object.defineProperties : function defineProperties(O, Properties){
+	module.exports = __webpack_require__(5) ? Object.defineProperties : function defineProperties(O, Properties){
 	  anObject(O);
 	  var keys   = getKeys(Properties)
 	    , length = keys.length
@@ -1330,7 +1332,7 @@
 	  , IE8_DOM_DEFINE = __webpack_require__(37)
 	  , gOPD           = Object.getOwnPropertyDescriptor;
 
-	exports.f = __webpack_require__(4) ? gOPD : function getOwnPropertyDescriptor(O, P){
+	exports.f = __webpack_require__(5) ? gOPD : function getOwnPropertyDescriptor(O, P){
 	  O = toIObject(O);
 	  P = toPrimitive(P, true);
 	  if(IE8_DOM_DEFINE)try {
@@ -1512,7 +1514,7 @@
 	// ECMAScript 6 symbols shim
 	var global         = __webpack_require__(1)
 	  , has            = __webpack_require__(2)
-	  , DESCRIPTORS    = __webpack_require__(4)
+	  , DESCRIPTORS    = __webpack_require__(5)
 	  , $export        = __webpack_require__(36)
 	  , redefine       = __webpack_require__(43)
 	  , META           = __webpack_require__(67).KEY
@@ -1520,7 +1522,7 @@
 	  , shared         = __webpack_require__(27)
 	  , setToStringTag = __webpack_require__(25)
 	  , uid            = __webpack_require__(14)
-	  , wks            = __webpack_require__(7)
+	  , wks            = __webpack_require__(8)
 	  , wksExt         = __webpack_require__(31)
 	  , wksDefine      = __webpack_require__(30)
 	  , keyOf          = __webpack_require__(66)
@@ -1533,7 +1535,7 @@
 	  , _create        = __webpack_require__(39)
 	  , gOPNExt        = __webpack_require__(70)
 	  , $GOPD          = __webpack_require__(69)
-	  , $DP            = __webpack_require__(6)
+	  , $DP            = __webpack_require__(7)
 	  , $keys          = __webpack_require__(12)
 	  , gOPD           = $GOPD.f
 	  , dP             = $DP.f
@@ -1736,7 +1738,7 @@
 	});
 
 	// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(5)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(6)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 	// 19.4.3.5 Symbol.prototype[@@toStringTag]
 	setToStringTag($Symbol, 'Symbol');
 	// 20.2.1.9 Math[@@toStringTag]
@@ -1762,9 +1764,9 @@
 
 	__webpack_require__(76);
 	var global        = __webpack_require__(1)
-	  , hide          = __webpack_require__(5)
+	  , hide          = __webpack_require__(6)
 	  , Iterators     = __webpack_require__(22)
-	  , TO_STRING_TAG = __webpack_require__(7)('toStringTag');
+	  , TO_STRING_TAG = __webpack_require__(8)('toStringTag');
 
 	for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
 	  var NAME       = collections[i]
@@ -1778,7 +1780,7 @@
 /* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(__dirname) {const electron = __webpack_require__(8)
+	/* WEBPACK VAR INJECTION */(function(__dirname) {const electron = __webpack_require__(4)
 
 	exports.install = () => {
 	  if (process.type === 'renderer') {
@@ -1813,7 +1815,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	const electron = __webpack_require__(8);
+	const electron = __webpack_require__(4);
 	const localShortcut = __webpack_require__(86);
 	const isDev = __webpack_require__(85);
 
@@ -1900,7 +1902,7 @@
 
 	'use strict';
 
-	const electron = __webpack_require__(8);
+	const electron = __webpack_require__(4);
 
 	const globalShortcut = electron.globalShortcut;
 	const BrowserWindow = electron.BrowserWindow;
