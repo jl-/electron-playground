@@ -1,0 +1,26 @@
+#loading-mask {
+  position: fixed;
+  left: 0; top: 0; bottom: 0; right: 0;
+  z-index: 100;
+  background-color: white;
+}
+#loading-mask .icon {
+  font-size: 3em;
+}
+#loading-mask.fade {
+  display: none;
+}
+.icon {
+  display: inline-block;
+}
+.icon-spin {
+  animation: spin 2s infinite linear;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

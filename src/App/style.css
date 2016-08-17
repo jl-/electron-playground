@@ -1,0 +1,38 @@
+$aside_width--max: 260px;
+html, body {
+  height: 100%;
+  width: 100%;
+}
+:global(#app-root) {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
+.root {
+  compose-with: global(pure-g);
+}
+
+/* asside */
+.aside {
+  compose-with: global(pure-u-1-4);
+  border-right: 1px solid #eee;
+  max-width: $aside_width--max;
+  text-align: right;
+}
+.link {
+  compose-with: global(pure-menu-link);
+}
+.link.linkActive {
+  color: black;
+  background-color: #eee;
+}
+
+/* main */
+.main {
+  compose-with: global(p-x--lg) global(p-y--md) global(pure-u-3-4) global(x--auto) global(y--auto);
+  min-width: calc(100% - #{$aside_width--max});
+}

@@ -1,0 +1,4 @@
+.table {
+  compose-with: global(vft-table) global(pure-table) global(pure-table-striped) global(pure-table-horizontal);
+  width: 100%;
+}

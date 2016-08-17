@@ -1,0 +1,29 @@
+$bdc: #ddd;
+.header {
+  compose-with: global(pure-menu) global(pure-menu-horizontal);
+}
+.tabHeaders {
+  compose-with: global(pure-menu-list) global(h--full);
+  border-bottom: 1px solid $bdc;
+}
+.tabHeader {
+  compose-with: global(pure-menu-item) global(p-x--md) global(p-y--sm);
+  cursor: pointer;
+  color: #666;
+  border: 1px solid transparent;
+  &Active#{&} {
+    color: black;
+    background-color: white;
+    border: 1px solid $bdc;
+    border-bottom-color: transparent;
+    margin-bottom: -2px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+}
+
+
+.body {
+}
+.tabContents {
+}

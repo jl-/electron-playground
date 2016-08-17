@@ -1,0 +1,55 @@
+$or_height: 30px;
+.addRuleBtn {
+  compose-with: global(icon) global(icon-add) global(m-x--md);
+  cursor: pointer;
+  -webkit-user-select: none;
+}
+.rulesToAddList {
+  compose-with: global(list--flat) global(p-x--0);
+}
+.ruleToAdd {
+  compose-with: global(x--auto) global(rel);
+  white-space: nowrap;
+  &ConfItem {
+    compose-with: global(dib) global(m-r--md);
+    &Key {
+    }
+    &Value {
+    }
+    &Close {
+      compose-with: global(icon) global(icon-close);
+      cursor: pointer;
+      color: red;
+      visibility: hidden;
+    }
+    & &Close {
+      font-size: 1.4em;
+    }
+    &:hover &Close {
+      visibility: visible;
+    }
+  }
+}
+
+
+.ruleToAdd + .ruleToAdd {
+  padding-top: $or_height;
+  &::before {
+    content: 'OR';
+    position: absolute;
+    top: 0; left: 1em;
+    font-size: 10px;
+    color: #555;
+    line-height: $or_height;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    height: $or_height - 8px;
+    top: 4px;
+    width: 1px;
+    left: 3px;
+    border-left: 1px dashed #ccc;
+    border-right: 1px dashed #ccc;
+  }
+}

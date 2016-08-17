@@ -1,0 +1,6 @@
+.group {
+  compose-with: global(frow) global(m-r--md) global(pure-u-1) global(pure-u-md-2-5);
+}
+.table {
+  compose-with: global(m-t--lg);
+}
