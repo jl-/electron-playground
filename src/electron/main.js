@@ -6,14 +6,12 @@ import {
     DEFAULT_WIN_CONF
 } from '../configs/app';
 
-console.log(require.resolve('electron'));
-
 const { app, BrowserWindow } = electron;
 const wins = {};
 const APP_WIN_NAME = 'app';
 
 function tryDevTools(win) {
-    if (process.env.NODE_ENV !== 'development') return;
+    // if (process.env.NODE_ENV !== 'development') return;
     require('electron-debug')({ showDevTools: true });
     win.webContents.openDevTools();
 }

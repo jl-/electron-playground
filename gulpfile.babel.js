@@ -15,6 +15,7 @@ import {
     webpackProdMainConf,
     webpackProdRendererConf
 } from './webpack/prod.conf';
+console.log(webpackProdRendererConf[0].module.loaders);
 
 // pathes config
 const CONF = {

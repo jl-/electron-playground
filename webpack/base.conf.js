@@ -1,6 +1,5 @@
 import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import postcssImport from 'postcss-import';
 import postcssUrl from 'postcss-url';
 import postcssNext from 'postcss-cssnext';
@@ -94,15 +93,9 @@ export default {
         }
     }]
   },
-  plugins: [new HtmlWebpackPlugin({
-      inject: 'body',
-      hash: false,
-      title: 'Electron Playground',
-      filename: 'index.html',
-      favicon: 'statics/images/favicon.ico',
-      template: path.resolve(PATHS.SRC, 'tpl.html')
-  }), new webpack.optimize.OccurenceOrderPlugin()
-    , new webpack.NoErrorsPlugin()
+  plugins: [
+      new webpack.optimize.OccurenceOrderPlugin()
+    // , new webpack.NoErrorsPlugin()
   ],
   postcss: (webpack) => {
       return {

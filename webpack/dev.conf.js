@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import * as i18n from '../i18n';
 import base, { PATHS } from './base.conf';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 const I18N_KEYS = Object.keys(i18n);
 
 export const WEBPACK_HOST = process.env.HOST || 'localhost';
@@ -34,6 +35,14 @@ const webpackDevConf = I18N_KEYS.map(lang => {
                 'process.env': {
                     NODE_ENV: JSON.stringify('development')
                 }
+            }),
+            new HtmlWebpackPlugin({
+                inject: 'body',
+                hash: false,
+                title: 'Electron Playground',
+                filename: 'index.html',
+                favicon: 'statics/images/favicon.ico',
+                template: path.resolve(PATHS.SRC, 'tpl.html')
             }),
             new webpack.HotModuleReplacementPlugin()
         ]

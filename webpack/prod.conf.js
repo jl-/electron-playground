@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import * as i18n from '../i18n';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import base, {
     PATHS,
     SASS_LOADER_CONF
@@ -14,14 +15,6 @@ const targetNode = {
     __filename: true,
     __dirname: true
 };
-// const nodeModules = fs.readdirSync('node_modules')
-//     .filter(x => ['.bin', '.DS_Store'].indexOf(x) === -1)
-//     .reduce((res, mod) => {
-//         /* eslint no-param-reassign: 0 */
-//         res[mod] = `commonjs ${mod}`;
-//         return res;
-//     }, {});
-
 const externalsPlugin = new webpack.ExternalsPlugin('commonjs', [
     'electron'
 ]);
@@ -35,16 +28,6 @@ export const webpackProdMainConf = I18N_KEYS.map(lang => {
             filename: 'main.js'
         },
         // node: targetNode,
-        module: {
-            loaders: [{
-                test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract(
-                    'style',
-                    `css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?${SASS_LOADER_CONF}`, {
-                    }),
-                include: [PATHS.APP, PATHS.COMPONENTS]
-            }]
-        },
         plugins: [
             new webpack.DefinePlugin({
                 __I18N_LANG__: JSON.stringify(lang),
@@ -52,30 +35,29 @@ export const webpackProdMainConf = I18N_KEYS.map(lang => {
                 'process.env': {
                     NODE_ENV: JSON.stringify('production')
                 }
-            }), new ExtractTextPlugin('style.css')
+            })
             , externalsPlugin
-            //  , new webpack.optimize.UglifyJsPlugin({
-            //      compress: {
-            //          warnings: false
-            //      }
-            //  })
+            , new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false
+                }
+            })
         ]
     });
 });
 
 export const webpackProdRendererConf = I18N_KEYS.map(lang => {
-    return merge(base, {
+    return merge.smart(base, {
         target: 'electron-renderer',
         output: {
-            path: path.resolve(PATHS.DIST, lang),
-            filename: 'main.js'
+            path: path.resolve(PATHS.DIST, lang)
         },
         module: {
             loaders: [{
                 test: /\.(css|scss)$/,
                 loader: ExtractTextPlugin.extract(
                     'style',
-                    `css?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?${SASS_LOADER_CONF}`, {
+                    `css?modules&localIdentName=[name]__[local]___[hash:base64:5]!sass?${SASS_LOADER_CONF}`, {
                     }),
                 include: [PATHS.APP, PATHS.COMPONENTS]
             }]
@@ -87,12 +69,21 @@ export const webpackProdRendererConf = I18N_KEYS.map(lang => {
                 'process.env': {
                     NODE_ENV: JSON.stringify('production')
                 }
-            }), new ExtractTextPlugin('style.css')
-            // , new webpack.optimize.UglifyJsPlugin({
-            //     compress: {
-            //         warnings: false
-            //     }
-            // })
+            })
+            , new ExtractTextPlugin('style.css')
+            , new HtmlWebpackPlugin({
+                inject: 'body',
+                hash: false,
+                title: 'Electron Playground',
+                filename: 'index.html',
+                favicon: 'statics/images/favicon.ico',
+                template: path.resolve(PATHS.SRC, 'tpl.html')
+            })
+            , new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false
+                }
+            })
         ]
     });
 });
