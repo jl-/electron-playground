@@ -3,7 +3,7 @@ import run from 'run-sequence';
 import del from 'del';
 import webpack from 'webpack';
 import childProcess from 'child_process';
-import electron from 'electron-prebuilt';
+import electron from 'electron';
 import WebpackDevServer from 'webpack-dev-server';
 
 import webpackDevConf, {
